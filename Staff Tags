@@ -1,0 +1,19 @@
+#InfiniJump staff tags command by Detective Vapor
+ 
+command /stafftags <offlineplayer> <text>:
+  permission: op
+  permission message: &4You are not allowed to use this command.
+  usage: /stafftags <player> <preset>
+  trigger:
+    if argument 2 is "helper":
+      execute console command "pex user %arg-1% suffix "" &6[&e☺&6]"""
+      send "&e%arg-1%&a's suffix has been set to the Helper preset."
+    if argument 2 is "mod" or "moderator":
+      execute console command "pex user %arg-1% suffix "" &6[&e☻&6]"""
+      send "&e%arg-1%&a's suffix has been set to the Moderator preset."
+    if argument 2 is "admin":
+      execute console command "pex user %arg-1% suffix "" &6[&e☀&6]"""
+      send "&e%arg-1%&a's suffix has been set to the Admin preset."
+    if argument 2 is "owner":
+      execute console command "pex user %arg-1% suffix "" &6[&e∞&6]"""
+      send "&e%arg-1%&a's suffix has been set to the Owner preset."
