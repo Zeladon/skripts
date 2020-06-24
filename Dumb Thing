@@ -1,0 +1,19 @@
+#Snowball launcher; can change certain things to make it shoot anything
+#kinda dumb tho
+ 
+command /snowballlauncher:
+  permission: op
+  aliases: /sl
+  trigger:
+    give player a golden hoe with name "&bS&6n&bo&6w&bb&6a&bl&6l &bL&6a&bu&6n&bc&6h&be&6r"  
+ 
+on rightclick with golden hoe:
+    if player has snowball:
+        if name of held item is "&bS&6n&bo&6w&bb&6a&bl&6l &bL&6a&bu&6n&bc&6h&be&6r":
+            shoot snowball at speed 3
+            if player's gamemode is adventure or survival:
+                remove 1 snowball from player's inventory
+        else:
+            send "&eYou don't have a Snowball Launcher!"
+    else:
+        send "&eYou don't have any snowballs!"
