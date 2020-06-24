@@ -1,0 +1,102 @@
+#Economy with coins that can be used to buy skips by Detective Vapor
+ 
+command checkskips <offlineplayer>:
+  aliases: /cs
+  trigger:
+    send "&a%arg-1% has %{skips::%arg-1%}% skips."
+ 
+command setskips <player> <integer>:
+  permission: ij.staff
+  trigger:
+    set {skips::%arg-1%} to arg-2
+    send "&a%arg-1%'s skips has been set to %arg-2%"
+ 
+command addskips <player> <integer>:
+  permission: ij.staff
+  trigger:
+    add arg-2 to {skips::%arg-1%}
+    send "&a%arg-2% skips have been added to %arg-1%"
+ 
+command removeskips <player> <integer>:
+  permission: ij.staff
+  trigger:
+    remove arg-2 from {skips::%arg-1%}
+    send "&a%arg-2% skips have been removed from %arg-1%"
+ 
+command removecoins <player> <integer>:
+  permission: ij.staff
+  trigger:
+    remove arg-2 from {coins::%arg-1's uuid%}
+    send "&a%arg-2% coins have been removed from %arg-1%"
+ 
+command /coinsgive <player> <integer>:
+  permission: ij.staff
+  trigger:
+    add arg-2 to {coins::%arg-1's uuid%}
+    send "&eYou gave &c%arg-1% &a%arg-2% &ecoins!"
+ 
+command /coins:
+    trigger:
+        if {coins::%player's uuid%} > 0:
+            send "&eYour balance is &c%{coins::%player's uuid%}% &ecoins!"
+        else:
+            send "&eYou don't have any coins!"
+ 
+command /send <player> <integer>: #must add a safety catch here so that people can't send insane amounts of coins
+    trigger:
+        if {coins::%player's uuid%} < arg-2:
+            send "&cYou do not have enought coins to do this!"
+        else:
+            remove arg-2 from {coins::%player's uuid%}
+            add arg-2 to {coins::%arg-1's uuid%}
+            send "&eYou sent &c%arg-1% &a%arg-2% &ecoins!"
+ 
+command /skips:
+    trigger:
+        wait 1 tick
+        open virtual chest inventory with 1 rows named "&eSkip Shop" to player
+        format gui slot 0 of player with shiny ghast tear named "&6One Skip" with lore "&c5 coins" to run:
+            if {coins::%player's uuid%} >= 5:
+                remove 5 from {coins::%player's uuid%}
+                add 1 to {skips::%player%}
+                close player's inventory
+                send "&eYou bought 1 skips!"
+            else:
+                close player's inventory
+                send "&cYou don't have enough coins!"
+        format gui slot 2 of player with shiny iron nugget named "&dTwo Skips" with lore "&c9 coins" to run:
+            if {coins::%player's uuid%} >= 9:
+                remove 9 from {coins::%player's uuid%}
+                add 2 to {skips::%player%}
+                close player's inventory
+                send "&eYou bought 2 skips!"
+            else:
+                close player's inventory
+                send "&cYou don't have enough coins!"
+        format gui slot 4 of player with shiny gold nugget named "&eFive Skips" with lore "&c20 coins" to run:
+            if {coins::%player's uuid%} >= 20:
+                remove 20 from {coins::%player's uuid%}
+                add 5 to {skips::%player%}
+                close player's inventory
+                send "&eYou bought 5 skips!"
+            else:
+                close player's inventory
+                send "&cYou don't have enough coins!"
+        format gui slot 6 of player with shiny emerald named "&6Ten Skips" with lore "&c40 coins" to run:
+            if {coins::%player's uuid%} >= 40:
+                remove 40 from {coins::%player's uuid%}
+                add 10 to {skips::%player%}
+                close player's inventory
+                send "&eYou bought 10 skips!"
+            else:
+                close player's inventory
+                send "&cYou don't have enough coins!"
+        format gui slot 8 of player with shiny diamond named "&cTwenty Skips" with lore "&c70 coins" to run:
+            if {coins::%player's uuid%} >= 70:
+                remove 70 from {coins::%player's uuid%}
+                add 20 to {skips::%player%}
+                close player's inventory
+                send "&eYou bought 20 skips!"
+            else:
+                close player's inventory
+                send "&cYou don't have enough coins!"
