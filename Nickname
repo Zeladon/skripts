@@ -1,0 +1,34 @@
+#/nick command, first arg is nickname, second arg is prefix or whatever you want, really, by Detective Vapor
+ 
+command /nick <text> [<text>]:
+  permission: sh.youtube
+  trigger:
+    if arg-1 is "reset":
+      set player's display name to "%player%"
+      set player's tablist name to "%player%"
+    else:
+      set player's display name to arg-1
+      set player's tablist name to arg-1
+    if arg-2 is set:
+      if arg-2 is "reset":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else if arg-2 is " ":
+        execute console command " "
+      else:
+        send "&c%arg-2% &bis not a recognized rank!"
