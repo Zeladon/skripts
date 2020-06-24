@@ -1,0 +1,30 @@
+#Chat filter by Detective Vapor and Insecurity
+ 
+command /addword <text>:
+    permission: ij.addword
+    trigger:
+        set {swear words::%arg-1%} to arg-1
+        send "&fWord added! &b%arg-1%" to player
+ 
+command /listwords:
+    permission: ij.listwords
+    trigger:
+        send "&fHere is a list of all banned words!"
+        loop {swear words::*}:
+            send "&b%loop-value%" to player
+ 
+command /removeword <text>:
+  permission: ij.addword
+  trigger:
+    loop {swear words::*}:
+      if arg-1 is loop-value:
+        clear {swear words::%arg-1%}
+        send "Removed word: &b%arg-1%"
+ 
+on chat:
+    loop {swear words::*}:
+        if message contains loop-value:
+            if player doesn't have permission "ij.filterbypass":
+                send "&cThat word is not allowed here!" to player
+                send "&c&lFILTERED! &7| &f%player% has swore! %player% said ""%loop-value%""" to all players where [input has permission "ij.staff"]
+                cancel event
