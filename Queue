@@ -1,0 +1,28 @@
+# simple queue by Detective Vapor
+ 
+command /queue <text>:
+  usage: /queue (enter|leave|start|end|tp)
+  trigger:
+    if arg-1 is "enter":
+      if {queuestarted} is true:
+        set {queue::%player's uuid%} to player
+      else:
+        send "&cThe queue hasn't been started!"
+    if arg-1 is "leave":
+      delete {queue::%player's uuid%}
+    if arg-1 is "start":
+      if player has permission "start.queue":
+        set {queuestarted} to true
+      else:
+        send "&cInsufficient Permission"
+    if arg-1 is "end":
+      delete {queue::*}
+      set {queuestarted} to false
+    if arg-1 is "tp":
+      if player has permission "tp.queue":
+        loop {queue::*}:
+          teleport loop-value to player
+      else:
+        send "&cInsufficient Permission"
+    else:
+      send "&c%arg-1% &cis not an option!"
