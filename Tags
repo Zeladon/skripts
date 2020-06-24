@@ -1,0 +1,224 @@
+#Full tags command including rank tags for InfiniJump by Detective Vapor
+ 
+command tags:
+  trigger:
+    wait 1 tick
+    open virtual chest inventory with 1 rows named "&eTags" to player
+    format gui slot 0 of player with shiny gold ingot named "&6VIP Tags" to run:
+      player command "viptags"
+    format gui slot 1 of player with shiny dried kelp block named "&6[&9N&ae&9o &aK&9i&an&9g&6]" to run:
+      player command "tagneo"
+    format gui slot 3 of player with shiny dead horn coral block named "&6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6]" to run:
+      player command "tagfour"
+    format gui slot 5 of player with shiny red glazed terracotta named "&6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6]" to run:
+      player command "tagladder"
+    format gui slot 7 of player with shiny diamond named "&6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6]" to run:
+      player command "tagall"
+    format gui slot 8 of player with shiny emerald named "&6MVP Tags" to run:
+      player command "mvptags"
+ 
+command tagneo:
+  permission: neo.ch
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    execute console command "pex user %player% suffix "" &6[&9N&ae&9o &aK&9i&an&9g&6]"""
+    send "&aYour tag has been set to &6[&9N&ae&9o &aK&9i&an&9g&6]."
+ 
+command tagfour:
+  permission: fourblock.ch
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    execute console command "pex user %player% suffix "" &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6]"""
+    send "&aYour tag has been set to &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6]."
+ 
+command tagladder:
+  permission: ladder.ch
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    execute console command "pex user %player% suffix "" &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6]"""
+    send "&aYour tag has been set to &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6]."
+ 
+command tagall:
+  trigger:
+    if player has permission "neo.ch":
+      if player has permission "ladder.ch":
+        if player has permission "fourblock.ch":
+          execute console command "pex user %player% suffix "" &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6]"""
+          send "&aYour tag has been set to &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6]."
+          execute console command "pex user %player% add all.ch"
+        else:
+          send "&4You are not allowed to use this command."
+          stop
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+on rightclick on dead horn coral block:
+  execute console command "pex user %player% suffix "" &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6]"""
+  wait 1 tick
+  execute console command "pex user %player% add fourblock.ch"
+ 
+on rightclick on dried kelp block:
+  execute console command "pex user %player% suffix "" &6[&9N&ae&9o &aK&9i&an&9g&6]"""
+  wait 1 tick
+  execute console command "pex user %player% add neo.ch"
+ 
+on rightclick on red glazed terracotta:
+  execute console command "pex user %player% suffix "" &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6]"""
+  wait 1 tick
+  execute console command "pex user %player% add ladder.ch"
+ 
+command mvptags:
+  permission: sk.mvp
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    wait 1 tick
+    open virtual chest inventory with 1 rows named "&eMVP Tags" to player
+    format gui slot 0 of player with shiny dried kelp block named "&6[&9N&ae&9o &aK&9i&an&9g&6] &a[&b✔&a]" to run:
+      player command "mvpneo"
+    format gui slot 2 of player with shiny dead horn coral block named "&6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a[&b✔&a]" to run:
+      player command "mvpblock"
+    format gui slot 4 of player with shiny red glazed terracotta named "&6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a[&b✔&a]" to run:
+      player command "mvpladder"
+    format gui slot 6 of player with shiny diamond named "&6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a[&b✔&a]" to run:
+      player command "mvpcomp"
+    format gui slot 8 of player with shiny gold ingot named "&a[&b✔&a]" to run:
+      player command "mvpnone"
+ 
+command mvpnone:
+  permission: sk.mvp
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    execute console command "pex user %player% suffix "" &a[&b✔&a]"""
+    send "&aYour tag has been set to &a[&b✔&a]."
+ 
+command mvpneo:
+  trigger:
+    if player has permission "neo.ch":
+      if player has permission "sk.mvp":
+        execute console command "pex user %player% suffix "" &6[&9N&ae&9o &aK&9i&an&9g&6] &a[&b✔&a]"""
+        send "&aYour tag has been set to &6[&9N&ae&9o &aK&9i&an&9g&6] &a[&b✔&a]."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command mvpblock:
+  trigger:
+    if player has permission "fourblock.ch":
+      if player has permission "sk.mvp":
+        execute console command "pex user %player% suffix "" &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a[&b✔&a]"""
+        send "&aYour tag has been set to &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a[&b✔&a]."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command mvpladder:
+  trigger:
+    if player has permission "ladder.ch":
+      if player has permission "sk.mvp":
+        execute console command "pex user %player% suffix "" &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a[&b✔&a]"""
+        send "&aYour tag has been set to &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a[&b✔&a]."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command mvpcomp:
+  trigger:
+    if player has permission "all.ch":
+      if player has permission "sk.mvp":
+        execute console command "pex user %player% suffix "" &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a[&b✔&a]"""
+        send "&aYour tag has been set to  &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a[&b✔&a]."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command viptags:
+  permission: sk.vip
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    wait 1 tick
+    open virtual chest inventory with 1 rows named "&eVIP Tags" to player
+    format gui slot 0 of player with shiny dried kelp block named "&6[&9N&ae&9o &aK&9i&an&9g&6] &a✔" to run:
+      player command "vipneo"
+    format gui slot 2 of player with shiny dead horn coral block named "&6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a✔" to run:
+      player command "vipblock"
+    format gui slot 4 of player with shiny red glazed terracotta named "&6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a✔" to run:
+      player command "vipladder"
+    format gui slot 6 of player with shiny diamond named "&6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a✔" to run:
+      player command "vipcomp"
+    format gui slot 8 of player with shiny gold ingot named "&a✔" to run:
+      player command "vipnone"
+ 
+command vipnone:
+  permission: sk.vip
+  permission message: &4You are not allowed to use this command.
+  trigger:
+    execute console command "pex user %player% suffix "" &a✔"""
+    send "&aYour tag has been set to &a✔."
+ 
+command vipneo:
+  trigger:
+    if player has permission "neo.ch":
+      if player has permission "sk.vip":
+        execute console command "pex user %player% suffix "" &6[&9N&ae&9o &aK&9i&an&9g&6] &a✔"""
+        send "&aYour tag has been set to &6[&9N&ae&9o &aK&9i&an&9g&6] &a✔."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command vipblock:
+  trigger:
+    if player has permission "fourblock.ch":
+      if player has permission "sk.vip":
+        execute console command "pex user %player% suffix "" &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a✔"""
+        send "&aYour tag has been set to &6[&6B&el&6o&ec&6k &eM&6a&es&6t&ee&6r&6] &a✔."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command vipladder:
+  trigger:
+    if player has permission "ladder.ch":
+      if player has permission "sk.vip":
+        execute console command "pex user %player% suffix "" &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a✔"""
+        send "&aYour tag has been set to &6[&aL&ba&ad&bd&ae&br &aC&bl&ai&bm&ab&be&ar&6] &a✔."
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
+ 
+command vipcomp:
+  trigger:
+    if player has permission "all.ch":
+      if player has permission "sk.vip":
+        execute console command "pex user %player% suffix "" &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a✔"""
+        send "&aYour tag has been set to  &6[&dC&9o&6m&ap&dl&9e&6t&ai&do&9n&6i&a&ds&9t&6] &a✔"
+      else:
+        send "&4You are not allowed to use this command."
+        stop
+    else:
+      send "&4You are not allowed to use this command."
+      stop
