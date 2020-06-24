@@ -1,0 +1,13 @@
+#Custom enchant skript; copy, paste, and change the wording and effects to make a new enchant
+ 
+on skript load:
+     register a new custom enchantment with id name "Enchant"
+     set {_enchantment} to "Enchant" parsed as custom enchantment
+     set max level of {_enchantment} to 5
+     set rarity of {_enchantment} to 1
+     set accepted items for {_enchantment} to "Armor"
+     set lore name of {_enchantment} to "You will gain the power of the &6&Enchant"
+ 
+every 5 seconds:
+    if player's armor has custom enchantment Enchant:
+        console command "effect give %player% speed 9999 10"
